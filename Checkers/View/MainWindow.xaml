@@ -8,9 +8,7 @@
         Title="Main Menu"
         Height="400"
         Width="400">
-    <Window.DataContext>
-        <local:GameVM />
-    </Window.DataContext>
+    
     <Grid>
         <Button Name="btNewGame"
                 Content="Start New Game"
