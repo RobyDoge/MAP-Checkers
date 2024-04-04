@@ -3,10 +3,53 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Checkers.View"
+        xmlns:local="clr-namespace:Checkers.ViewModel"
         mc:Ignorable="d"
-        Title="Main Menu" Height="450" Width="800">
+        Title="Main Menu"
+        Height="400"
+        Width="400">
+    <Window.DataContext>
+        <local:GameVM />
+    </Window.DataContext>
     <Grid>
+        <Button Name="btNewGame"
+                Content="Start New Game"
+                HorizontalAlignment="Center"
+                Margin="0,66,0,0"
+                VerticalAlignment="Top"
+                Width="179"
+                Height="27" />
+        <CheckBox Content="Allow Multiple Jump"
+                  Name="chbMultipleJump"
+                  HorizontalAlignment="Center"
+                  Margin="0,98,0,0"
+                  VerticalAlignment="Top"
+                  Height="21"
+                  Width="132" />
+        <Button Content="Open A Saved Game"
+                Name="btOpenGame"
+                HorizontalAlignment="Center"
+                Margin="0,140,0,0"
+                VerticalAlignment="Top"
+                Width="179"
+                Height="28" />
+
+        <Button Content="Statistics"
+                Name="btStatistics"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                RenderTransformOrigin="-7.307,-0.976"
+                Width="179"
+                Height="26"
+                Margin="0,192,0,0" />
+        <Button Content="Help"
+                Name="btHelp"
+                HorizontalAlignment="Center"
+                Margin="0,246,0,0"
+                VerticalAlignment="Top"
+                RenderTransformOrigin="-0.276,-3.199"
+                Width="179"
+                Height="27" />
 
     </Grid>
 </Window>
