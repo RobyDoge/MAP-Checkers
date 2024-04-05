@@ -41,8 +41,17 @@ namespace Checkers.Model
 
         }
 
+        public string CurrentImage
+        {
+            get => _currentImage;
+            set
+            { 
+                _currentImage = value;
+                NotifyPropertyChanged("CurrentImage");
+            }
+        }
 
-
+        private string _currentImage;
         private string _backgroundEmptyPath;
         private string _whitePiece;
         private string _blackPiece;

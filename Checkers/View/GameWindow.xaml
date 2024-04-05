@@ -32,7 +32,7 @@
                                         CommandParameter="{Binding SimpleCell}">
                                     <Button.Template>
                                         <ControlTemplate>
-                                            <Image Source="/Checkers;component/images/init.png"
+                                            <Image Source="{Binding SimpleCell.CurrentImage}"
                                                    Stretch="UniformToFill" />
                                         </ControlTemplate>
                                     </Button.Template>

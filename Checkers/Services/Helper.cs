@@ -18,38 +18,33 @@ namespace Checkers.Services
                 var row = new ObservableCollection<Cell>();
                 for (var j = 0; j < 8; j++)
                 {
-                    //if (i is < 2 or > 5)
-                    //{
-                    //    row.Add(count % 2 == 0
-                    //        ? new Cell("Images/BlackSpace_Empty.png", 
-                    //            "Images/BlackSpace_Empty_BlackPiece.png",
-                    //            "Images/BlackSpace_Empty_WhitePiece.png")
-                    //        : new Cell("Images/WhiteSpace_Empty.png"));
-                    //}
-                    //else
-                    //{
-                    //    row.Add(count % 2 == 0
-                    //        ? new Cell("Images/BlackSpace_Empty.png")
-                    //        : new Cell("Images/WhiteSpace_Empty.png"));
-                    //}
-                    if (i is < 2 or > 5)
-                    {
-                        row.Add(count % 2 == 0
-                            ? new Cell("/Checkers;component/images/blackspace_empty.png",
-                                "/Checkers;component/images/blackspace_blackpiece.png",
-                                "/Checkers;component/images/blackspace_whitePiece.png")
-                            : new Cell("/Checkers;component/images/whitespace_empty.png"));
-                    }
-                    else
-                    {
-                        row.Add(count % 2 == 0
-                            ? new Cell("/Checkers;component/images/blackspace_empty.png")
-                            : new Cell("/Checkers;component/images/whitespace_empty.png"));
-                    }
+                    row.Add(count % 2 == 0
+                            ? new Cell(@"D:\AN2-SEM2\MAP\MAP-Tema2\Checkers\bin\Debug\net8.0-windows\Images\BlackSpace_Empty.png",
+                                @"D:\AN2-SEM2\MAP\MAP-Tema2\Checkers\bin\Debug\net8.0-windows\Images\BlackSpace_BlackPiece.png",
+                                @"D:\AN2-SEM2\MAP\MAP-Tema2\Checkers\bin\Debug\net8.0-windows\Images\BlackSpace_WhitePiece.png")
+                            : new Cell(@"D:\AN2-SEM2\MAP\MAP-Tema2\Checkers\bin\Debug\net8.0-windows\Images\WhiteSpace_Empty.png"));
+                    row[j].CurrentImage = row[j].BackgroundEmptyPath;
                     count++;
                 }
                 board.Add(row);
+                count--;
             }
+
+            //count = 0;
+            //for(var i = 0; i< 8;i++)
+            //{
+            //    for(var j = 0; j< 8; j++)
+            //    {
+            //        if (i < 2 && board[i][j].BackgroundEmptyPath.Contains("BlackSpace_Empty"))
+            //        {
+            //            board[i][j].CurrentImage = board[i][j].BlackPiece;
+            //        }
+            //        if (i > 5 && board[i][j].BackgroundEmptyPath.Contains("BlackSpace_Empty"))
+            //        {
+            //            board[i][j].CurrentImage = board[i][j].WhitePiece;
+            //        }
+            //    }
+            //}
 
             return board;
         }
