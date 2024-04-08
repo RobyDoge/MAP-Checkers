@@ -12,7 +12,11 @@ namespace Checkers.Model
                 return;
             WhitePiece = backgroundPiecePath[0];
             BlackPiece = backgroundPiecePath[1];
+            WhitePieceSelected = backgroundPiecePath[0].Replace("WhitePiece", "WhitePiece_Selected");
+            BlackPieceSelected = backgroundPiecePath[1].Replace("BlackPiece", "BlackPiece_Selected");
         }
+
+        
 
         public string BackgroundEmptyPath
         {
@@ -41,6 +45,24 @@ namespace Checkers.Model
                 NotifyPropertyChanged("BlackPiece");
             }
         }
+        public string WhitePieceSelected
+        {
+            get => _whitePieceSelected;
+            set
+            {
+                _whitePieceSelected = value;
+                NotifyPropertyChanged("WhitePieceSelected");
+            }
+        }
+        public string BlackPieceSelected
+        {
+            get => _blackPieceSelected;
+            set
+            {
+                _blackPieceSelected = value;
+                NotifyPropertyChanged("BlackPieceSelected");
+            }
+        }
         public string CurrentImage
         {
             get => _currentImage;
@@ -67,6 +89,8 @@ namespace Checkers.Model
         private string _backgroundEmptyPath;
         private string _whitePiece;
         private string _blackPiece;
+        private string _whitePieceSelected;
+        private string _blackPieceSelected;
     }
 
     public enum State

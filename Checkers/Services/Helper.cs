@@ -6,7 +6,7 @@ namespace Checkers.Services
 {
     public static class Helper
     {
-        public static Cell PreviousCell { get; set; }
+        public static Cell? PreviousCell { get; set; }
 
         public static ObservableCollection<ObservableCollection<Cell>> InitGameBoard()
         {
