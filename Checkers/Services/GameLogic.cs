@@ -35,11 +35,42 @@ namespace Checkers.Services
             {
                 if (cell.CurrentState != State.Empty) return;
                 if(!IsMovingForward(cell, Helper.PreviousCell)) return;
-                if(!AreNeighbours(cell, Helper.PreviousCell)) return;
-
+                if (PieceTakingAvailable(cell, Helper.PreviousCell))
+                {
+                    MovePiece(cell, Helper.PreviousCell);
+                    TookAPiece = true;
+                    return;
+                }
+                if (!AreNeighbours(cell, Helper.PreviousCell)) return;
 
                 MovePiece(cell, Helper.PreviousCell);
             }
+        }
+
+        private bool PieceTakingAvailable(Cell cell, Cell previousCell)
+        {
+            if (AvailableJump(cell, previousCell, 2, 2)) return true;
+            if (AvailableJump(cell, previousCell, -2, -2)) return true;
+            if (AvailableJump(cell, previousCell, +2, -2)) return true;
+            if (AvailableJump(cell, previousCell, -2, 2)) return true;
+            return false;
+        }
+
+        private bool AvailableJump(Cell cell, Cell previousCell, int X, int Y)
+        {
+            int targetX = previousCell.X + X;
+            int targetY = previousCell.Y + Y;
+            if (targetX < 1 || targetX >= Cells.Count || targetY < 1 || targetY >= Cells[targetX].Count)
+            {
+                return false;
+            }
+
+            return Cells[targetX][targetY].CurrentState == State.Empty &&
+                   Cells[targetX - 1][targetY - 1].CurrentState != previousCell.CurrentState &&
+                   Cells[targetX - 1][targetY - 1].CurrentState != State.Empty &&
+                   cell.X == targetX &&
+                   cell.Y == targetY
+                   ;
         }
 
         private void MovePiece(Cell cell, Cell previousCell)
@@ -68,13 +99,13 @@ namespace Checkers.Services
         {
             if (previousCell.CurrentState == State.BlackPiece)
             {
-                if (cell.X == previousCell.X + 1 && cell.Y == previousCell.Y + 1) return true;
-                if (cell.X == previousCell.X - 1 && cell.Y == previousCell.Y + 1) return true;
+                if (cell.X > previousCell.X && cell.Y > previousCell.Y) return true;
+                if (cell.X < previousCell.X && cell.Y > previousCell.Y) return true;
             }
             else if (previousCell.CurrentState == State.WhitePiece)
             {
-                if (cell.X == previousCell.X + 1 && cell.Y == previousCell.Y - 1) return true;
-                if (cell.X == previousCell.X - 1 && cell.Y == previousCell.Y - 1) return true;
+                if (cell.X > previousCell.X && cell.Y < previousCell.Y) return true;
+                if (cell.X < previousCell.X && cell.Y < previousCell.Y) return true;
             }
             return false;
 

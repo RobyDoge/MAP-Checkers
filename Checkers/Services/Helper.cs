@@ -20,10 +20,10 @@ namespace Checkers.Services
             //    for (var j = 0; j < 8; j++)
             //    {
             //        row.Add(count % 2 == 0
-            //                ? new Cell(@"D:\AN2-SEM2\MAP\MAP-Tema2\Checkers\bin\Debug\net8.0-windows\Images\BlackSpace_Empty.png",
-            //                    @"D:\AN2-SEM2\MAP\MAP-Tema2\Checkers\bin\Debug\net8.0-windows\Images\BlackSpace_BlackPiece.png",
-            //                    @"D:\AN2-SEM2\MAP\MAP-Tema2\Checkers\bin\Debug\net8.0-windows\Images\BlackSpace_WhitePiece.png")
-            //                : new Cell(@"D:\AN2-SEM2\MAP\MAP-Tema2\Checkers\bin\Debug\net8.0-windows\Images\WhiteSpace_Empty.png"));
+            //                ? new Cell(j,i,@"D:\AN2-SEM2\MAP\MAP-Tema2\Checkers\bin\Debug\net8.0-windows\Images\BlackSpace_Empty.png",
+            //                    @"D:\AN2-SEM2\MAP\MAP-Tema2\Checkers\bin\Debug\net8.0-windows\Images\BlackSpace_WhitePiece.png",
+            //                    @"D:\AN2-SEM2\MAP\MAP-Tema2\Checkers\bin\Debug\net8.0-windows\Images\BlackSpace_BlackPiece.png")
+            //                : new Cell(j,i,@"D:\AN2-SEM2\MAP\MAP-Tema2\Checkers\bin\Debug\net8.0-windows\Images\WhiteSpace_Empty.png"));
             //        row[j].CurrentImage = row[j].BackgroundEmptyPath;
             //        count++;
             //    }
