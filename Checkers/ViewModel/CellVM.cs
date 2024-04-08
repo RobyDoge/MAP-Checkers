@@ -9,9 +9,10 @@ namespace Checkers.ViewModel
     {
 
         private GameLogic GLogic { get; set; }
-        public CellVM(int x, int y,string backgroundEmptyPath,GameLogic GLogic, params string[] backgroundPiecePath )
+
+        public CellVM(Cell baseCell, GameLogic GLogic)
         {
-            SimpleCell = new Cell(x,y,backgroundEmptyPath, backgroundPiecePath);
+            SimpleCell = baseCell;
             this.GLogic = GLogic;
         }
 
