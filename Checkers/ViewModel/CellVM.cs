@@ -7,10 +7,11 @@ namespace Checkers.ViewModel
 {
     public class CellVM
     {
+
         private GameLogic GLogic { get; set; }
-        public CellVM(string backgroundEmptyPath,GameLogic GLogic, params string[] backgroundPiecePath )
+        public CellVM(int x, int y,string backgroundEmptyPath,GameLogic GLogic, params string[] backgroundPiecePath )
         {
-            SimpleCell = new Cell(backgroundEmptyPath, backgroundPiecePath);
+            SimpleCell = new Cell(x,y,backgroundEmptyPath, backgroundPiecePath);
             this.GLogic = GLogic;
         }
 
