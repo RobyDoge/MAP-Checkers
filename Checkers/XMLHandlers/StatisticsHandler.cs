@@ -7,7 +7,7 @@ namespace Checkers.XMLHandlers
         public static bool UpdateStatisticsWhite(int piecesNumber)
         {
             XmlDocument xmlDoc = new();
-            xmlDoc.Load("../../../MultipleJumps.xml");
+            xmlDoc.Load("../../../Databases/Statistics.xml");
             XmlNode? rootNode = xmlDoc.SelectSingleNode("Statistics");
             if (rootNode == null) return false;
 
@@ -28,14 +28,14 @@ namespace Checkers.XMLHandlers
             maxPieceWinAttr.Value = piecesNumber > maxPieceWin ? piecesNumber.ToString() : maxPieceWin.ToString();
             
 
-            xmlDoc.Save("../../../MultipleJumps.xml");
+            xmlDoc.Save("../../../Databases/Statistics.xml");
             return true;
         }
 
         public static bool UpdateStatisticsBlack(int piecesNumber)
         {
             XmlDocument xmlDoc = new();
-            xmlDoc.Load("../../../MultipleJumps.xml");
+            xmlDoc.Load("../../../Databases/Statistics.xml");
             XmlNode? rootNode = xmlDoc.SelectSingleNode("Statistics");
             if (rootNode == null) return false;
 
@@ -56,7 +56,7 @@ namespace Checkers.XMLHandlers
             maxPieceWinAttr.Value = piecesNumber > maxPieceWin ? piecesNumber.ToString() : maxPieceWin.ToString();
 
 
-            xmlDoc.Save("../../../MultipleJumps.xml");
+            xmlDoc.Save("../../../Databases/Statistics.xml");
             return true;
         }
     }
