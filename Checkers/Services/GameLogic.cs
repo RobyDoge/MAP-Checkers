@@ -1,8 +1,5 @@
 ﻿using Checkers.Model;
 using System.Collections.ObjectModel;
-using System.Diagnostics.CodeAnalysis;
-using System.Windows;
-using System.Windows.Controls;
 using Checkers.XMLHandlers;
 using Checkers.View;
 

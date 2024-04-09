@@ -8,7 +8,9 @@
         Title="Main Menu"
         Height="400"
         Width="400">
-    
+    <Window.DataContext>
+        <local:MainMenuVM />
+    </Window.DataContext>
     <Grid>
         <Button Name="btNewGame"
                 Content="Start New Game"
@@ -19,6 +21,8 @@
                 Height="27"
                 Click="btNewGame_Click" />
         <CheckBox Content="Allow Multiple Jump"
+                  Command="{Binding ChangeMultipleJumps}"
+                  CommandParameter="{Binding IsChecked, ElementName=chbMultipleJump}"
                   Name="chbMultipleJump"
                   HorizontalAlignment="Center"
                   Margin="0,98,0,0"

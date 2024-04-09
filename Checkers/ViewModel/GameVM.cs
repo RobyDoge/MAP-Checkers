@@ -15,7 +15,7 @@ namespace Checkers.ViewModel
         public GameVM()
         {
             var board = Helper.InitGameBoard();
-            MultipleJumpsHandler.ChangeMultipleJumps(true);
+
             GLogic = new GameLogic(board, MultipleJumpsHandler.GetMultipleJumps());
             GameBoard = CellBoardToCellVMBoard(board);
         }
