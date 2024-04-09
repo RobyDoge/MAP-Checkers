@@ -22,35 +22,34 @@
                       HorizontalAlignment="Center"
                       Grid.Column="1">
             <ItemsControl.ItemTemplate>
-            <DataTemplate>
-                <ItemsControl ItemsSource="{Binding }" >
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <StackPanel Orientation="Horizontal" />
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Border Width="75"
-                                    Height="75"
-                                    BorderThickness="2"
-                                    BorderBrush="#000000">
-                                <Button Command="{Binding ClickCommand}"
-                                        CommandParameter="{Binding SimpleCell}">
-                                    <Button.Template>
-                                        <ControlTemplate>
-                                            <Image Source="{Binding SimpleCell.CurrentImage}"
-                                                   Stretch="UniformToFill" />
-                                        </ControlTemplate>
-                                    </Button.Template>
-                                </Button>
-                            </Border>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </DataTemplate>
-        </ItemsControl.ItemTemplate>
-        
-    </ItemsControl>
+                <DataTemplate>
+                    <ItemsControl ItemsSource="{Binding }">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Width="75"
+                                        Height="75"
+                                        BorderThickness="2"
+                                        BorderBrush="#000000">
+                                    <Button Command="{Binding ClickCommand}"
+                                            CommandParameter="{Binding SimpleCell}">
+                                        <Button.Template>
+                                            <ControlTemplate>
+                                                <Image Source="{Binding SimpleCell.CurrentImage}"
+                                                       Stretch="UniformToFill" />
+                                            </ControlTemplate>
+                                        </Button.Template>
+                                    </Button>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
     </Grid>
 </Window>

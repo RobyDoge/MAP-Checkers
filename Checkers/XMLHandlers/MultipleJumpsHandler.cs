@@ -7,9 +7,9 @@ namespace Checkers.XMLHandlers
         public static bool GetMultipleJumps()
         {
             XmlDocument xmlDoc = new();
-            xmlDoc.Load("../../../MultipleJumps.xml");
+            xmlDoc.Load("../../../Databases/MultipleJumps.xml");
             XmlNode? rootNode = xmlDoc.SelectSingleNode("MultipleJumpsAllowed");
-            if(rootNode == null) return false;
+            if (rootNode == null) throw new Exception("MultipleJumpsAllowed node not found");
             return rootNode.InnerText == "true";
         }
 
@@ -17,11 +17,11 @@ namespace Checkers.XMLHandlers
         {
             var change = multipleJumps ? "true" : "false";
             XmlDocument xmlDoc = new();
-            xmlDoc.Load("../../../MultipleJumps.xml");
+            xmlDoc.Load("../../../Databases/MultipleJumps.xml");
             XmlNode? rootNode = xmlDoc.SelectSingleNode("MultipleJumpsAllowed");
             if(rootNode == null) return false;
             rootNode.InnerText = change;
-            xmlDoc.Save("../../../MultipleJumps.xml");
+            xmlDoc.Save("../../../Databases/MultipleJumps.xml");
             return true;
         }
     }

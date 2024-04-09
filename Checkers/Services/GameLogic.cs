@@ -78,8 +78,6 @@ namespace Checkers.Services
                     {
                         throw new Exception("White Won");
                     }
-
-                    
                 }
                 else if (!AreNeighbours(cell)) return;
 
@@ -132,7 +130,7 @@ namespace Checkers.Services
             Helper.PreviousCell.CurrentState = State.Empty;
             Helper.PreviousCell = null;
 
-            if (TookAPiece)
+            if (MultipleJumps && TookAPiece)
             {
                 TookAPiece = false;
                 return;
