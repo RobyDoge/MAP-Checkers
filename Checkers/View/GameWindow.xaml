@@ -17,7 +17,9 @@
         </Grid.ColumnDefinitions>
 
         <Grid>
-            <Button Content="Button"
+            <Button Content="Save Game"
+                    Name ="btnSaveGame"
+                    Command="{Binding SaveGame}"
                     HorizontalAlignment="Left"
                     Margin="162,210,0,0"
                     VerticalAlignment="Top" />

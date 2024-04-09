@@ -1,17 +1,21 @@
 ﻿using Checkers.Model;
 using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
+using System.Windows;
 using System.Windows.Controls;
+using Checkers.XMLHandlers;
+using Checkers.View;
 
 namespace Checkers.Services
 {
     public class GameLogic
     {
-        enum Player
+        public enum Player
         {
             White,
             Black
         }
+
         private Player CurrentPlayer { get; set; }
         private bool MultipleJumps { get; set; }
         private bool TookAPiece { get; set; }
@@ -20,6 +24,7 @@ namespace Checkers.Services
         private int BlackPiecesNumber { get; set; }
 
         private ObservableCollection<ObservableCollection<Cell>> Cells { get; set; }
+
         public GameLogic(ObservableCollection<ObservableCollection<Cell>> cells, bool multipleJumps)
         {
             Cells = cells;
@@ -39,6 +44,7 @@ namespace Checkers.Services
                 {
                     Helper.PreviousCell.CurrentImage = Helper.PreviousCell.WhitePiece;
                 }
+
                 Helper.PreviousCell = cell;
                 Helper.PreviousCell.CurrentImage = cell.WhitePieceSelected;
             }
@@ -48,13 +54,14 @@ namespace Checkers.Services
                 {
                     Helper.PreviousCell.CurrentImage = Helper.PreviousCell.BlackPiece;
                 }
+
                 Helper.PreviousCell = cell;
                 Helper.PreviousCell.CurrentImage = cell.BlackPieceSelected;
             }
             else if (Helper.PreviousCell != null)
             {
                 if (cell.CurrentState != State.Empty) return;
-                if(!IsMovingForward(cell)) return;
+                if (!IsMovingForward(cell)) return;
 
                 if (PieceTakingAvailable(cell))
                 {
@@ -73,8 +80,9 @@ namespace Checkers.Services
                     if (WhitePiecesNumber == 0)
                     {
                         throw new Exception("Black Won");
-                        
+
                     }
+
                     if (BlackPiecesNumber == 0)
                     {
                         throw new Exception("White Won");
@@ -90,25 +98,26 @@ namespace Checkers.Services
         {
             if (Helper.PreviousCell?.CurrentState == State.WhitePiece)
             {
-                if (JumpAvailable(cell,-2,-2))
+                if (JumpAvailable(cell, -2, -2))
                 {
                     return IsJumpedPieceCorrect(Helper.PreviousCell.X - 1, Helper.PreviousCell.Y - 1, State.BlackPiece);
                 }
-                if (JumpAvailable(cell,+2,-2))
+
+                if (JumpAvailable(cell, +2, -2))
                 {
                     return IsJumpedPieceCorrect(Helper.PreviousCell.X + 1, Helper.PreviousCell.Y - 1, State.BlackPiece);
                 }
             }
 
-            if (JumpAvailable(cell,-2,+2))
+            if (JumpAvailable(cell, -2, +2))
                 return IsJumpedPieceCorrect(Helper.PreviousCell.X - 1, Helper.PreviousCell.Y + 1, State.WhitePiece);
-            if (JumpAvailable(cell,+2,+2))
+            if (JumpAvailable(cell, +2, +2))
                 return IsJumpedPieceCorrect(Helper.PreviousCell.X + 1, Helper.PreviousCell.Y + 1, State.WhitePiece);
 
             return false;
         }
 
-        private static bool JumpAvailable(Cell cell,int xOffSet, int yOffSet)
+        private static bool JumpAvailable(Cell cell, int xOffSet, int yOffSet)
         {
             return cell.X == Helper.PreviousCell?.X + xOffSet && cell.Y == Helper.PreviousCell?.Y + yOffSet;
         }
@@ -124,8 +133,10 @@ namespace Checkers.Services
 
         private void MovePiece(Cell cell)
         {
-            
-            cell.CurrentImage = Helper.PreviousCell.CurrentState==State.WhitePiece ? Helper.PreviousCell.WhitePiece : Helper.PreviousCell.BlackPiece;
+
+            cell.CurrentImage = Helper.PreviousCell.CurrentState == State.WhitePiece
+                ? Helper.PreviousCell.WhitePiece
+                : Helper.PreviousCell.BlackPiece;
             cell.CurrentState = Helper.PreviousCell.CurrentState;
             Helper.PreviousCell.CurrentImage = Helper.PreviousCell.BackgroundEmptyPath;
             Helper.PreviousCell.CurrentState = State.Empty;
@@ -138,7 +149,7 @@ namespace Checkers.Services
             }
 
             CurrentPlayer = CurrentPlayer == Player.White ? Player.Black : Player.White;
-              
+
             //TODO: check if there are any jumps left
             //if (TookAPiece)
             //{
@@ -160,6 +171,7 @@ namespace Checkers.Services
                 if (cell.X > Helper.PreviousCell.X && cell.Y < Helper.PreviousCell.Y) return true;
                 if (cell.X < Helper.PreviousCell.X && cell.Y < Helper.PreviousCell.Y) return true;
             }
+
             return false;
 
         }
@@ -171,9 +183,19 @@ namespace Checkers.Services
             if (cell.X == Helper.PreviousCell.X + 1 && cell.Y == Helper.PreviousCell.Y - 1) return true;
             if (cell.X == Helper.PreviousCell.X - 1 && cell.Y == Helper.PreviousCell.Y + 1) return true;
             return false;
-            
+
+        }
+
+        public void SaveGameAction(string notUsed)
+        {
+            var dialog = new InputGameName();
+            dialog.ShowDialog();
+            var gameName = dialog.GameName;
+            if(gameName == null) return;
+            SavedGamesHandler.SaveCurrentGame(Cells, CurrentPlayer, MultipleJumps,gameName);
         }
     }
+
 
 }
 

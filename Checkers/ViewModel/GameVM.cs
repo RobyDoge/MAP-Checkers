@@ -1,4 +1,6 @@
 ﻿using System.Collections.ObjectModel;
+using Checkers.Commands;
+using System.Windows.Input;
 using Checkers.Model;
 using Checkers.Services;
 using Checkers.XMLHandlers;
@@ -13,13 +15,9 @@ namespace Checkers.ViewModel
         public GameVM()
         {
             var board = Helper.InitGameBoard();
-            //TODO: this should be read from the 
-
             MultipleJumpsHandler.ChangeMultipleJumps(true);
             GLogic = new GameLogic(board, MultipleJumpsHandler.GetMultipleJumps());
             GameBoard = CellBoardToCellVMBoard(board);
-
-            
         }
 
         private ObservableCollection<ObservableCollection<CellVM>> CellBoardToCellVMBoard(ObservableCollection<ObservableCollection<Cell>> board)
@@ -35,6 +33,20 @@ namespace Checkers.ViewModel
                 boardVM.Add(rowVM);
             }
             return boardVM;
+        }
+
+        private ICommand _saveGame;
+
+        public ICommand SaveGame
+        {
+            get
+            {
+                if (_saveGame == null)
+                {
+                    _saveGame = new RelayCommand<string>(GLogic.SaveGameAction);
+                }
+                return _saveGame;
+            }
         }
 
     }

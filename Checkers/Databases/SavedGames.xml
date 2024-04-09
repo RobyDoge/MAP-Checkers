@@ -1,8 +1,27 @@
-﻿<SavedGames>
-  <Game id="1" name="TEST" playerTurn="White" multipleJumpsAllowed="false">
-    <Tile x="1" y="1" cureentState="BlackPiece" />
-    
-  </Game>    
-  
+<SavedGames>
+  <Game name="One Move Before White King" playerTurn="White" multipleJumpsAllowed="True">
+    <Cell y="0" x="0" currentState="BlackPiece" />
+    <Cell y="0" x="6" currentState="BlackPiece" />
+    <Cell y="1" x="1" currentState="BlackPiece" />
+    <Cell y="1" x="3" currentState="BlackPiece" />
+    <Cell y="1" x="5" currentState="BlackPiece" />
+    <Cell y="1" x="7" currentState="BlackPiece" />
+    <Cell y="2" x="0" currentState="BlackPiece" />
+    <Cell y="2" x="2" currentState="BlackPiece" />
+    <Cell y="2" x="4" currentState="WhitePiece" />
+    <Cell y="2" x="6" currentState="BlackPiece" />
+    <Cell y="3" x="1" currentState="BlackPiece" />
+    <Cell y="4" x="2" currentState="WhitePiece" />
+    <Cell y="5" x="5" currentState="BlackPiece" />
+    <Cell y="5" x="7" currentState="WhitePiece" />
+    <Cell y="6" x="0" currentState="WhitePiece" />
+    <Cell y="6" x="2" currentState="WhitePiece" />
+    <Cell y="6" x="4" currentState="WhitePiece" />
+    <Cell y="6" x="6" currentState="WhitePiece" />
+    <Cell y="7" x="1" currentState="WhitePiece" />
+    <Cell y="7" x="3" currentState="WhitePiece" />
+    <Cell y="7" x="5" currentState="WhitePiece" />
+    <Cell y="7" x="7" currentState="WhitePiece" />
+  </Game>
   
 </SavedGames>

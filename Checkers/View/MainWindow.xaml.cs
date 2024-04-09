@@ -11,5 +11,12 @@ namespace Checkers.View
         {
             InitializeComponent();
         }
+
+        private void btNewGame_Click(object sender, RoutedEventArgs e)
+        {
+            var game = new GameWindow();
+            game.Show();
+            Close();
+        }
     }
 }

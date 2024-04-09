@@ -16,7 +16,8 @@
                 Margin="0,66,0,0"
                 VerticalAlignment="Top"
                 Width="179"
-                Height="27" />
+                Height="27"
+                Click="btNewGame_Click" />
         <CheckBox Content="Allow Multiple Jump"
                   Name="chbMultipleJump"
                   HorizontalAlignment="Center"
