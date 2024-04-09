@@ -16,6 +16,14 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
+        <Grid>
+            <Button Content="Button"
+                    HorizontalAlignment="Left"
+                    Margin="162,210,0,0"
+                    VerticalAlignment="Top" />
+
+        </Grid>
+        
         <ItemsControl Name="Board"
                       ItemsSource="{Binding GameBoard}"
                       VerticalAlignment="Center"
