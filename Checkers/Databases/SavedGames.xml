@@ -1,0 +1,8 @@
+﻿<SavedGames>
+  <Game id="1" name="TEST" playerTurn="White" multipleJumpsAllowed="false">
+    <Tile x="1" y="1" cureentState="BlackPiece" />
+    
+  </Game>    
+  
+  
+</SavedGames>

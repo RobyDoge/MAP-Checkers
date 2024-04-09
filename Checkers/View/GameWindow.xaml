@@ -10,13 +10,20 @@
     <Window.DataContext>
         <local:GameVM />
     </Window.DataContext>
-    <ItemsControl Name="Board"
-                  ItemsSource="{Binding GameBoard}"
-                  VerticalAlignment="Center"
-                  HorizontalAlignment="Center">
-        <ItemsControl.ItemTemplate>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <ItemsControl Name="Board"
+                      ItemsSource="{Binding GameBoard}"
+                      VerticalAlignment="Center"
+                      HorizontalAlignment="Center"
+                      Grid.Column="1">
+            <ItemsControl.ItemTemplate>
             <DataTemplate>
-                <ItemsControl ItemsSource="{Binding  }">
+                <ItemsControl ItemsSource="{Binding }" >
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <StackPanel Orientation="Horizontal" />
@@ -43,5 +50,7 @@
                 </ItemsControl>
             </DataTemplate>
         </ItemsControl.ItemTemplate>
+        
     </ItemsControl>
+    </Grid>
 </Window>
