@@ -73,6 +73,7 @@ namespace Checkers.Services
                     if (WhitePiecesNumber == 0)
                     {
                         throw new Exception("Black Won");
+                        
                     }
                     if (BlackPiecesNumber == 0)
                     {
