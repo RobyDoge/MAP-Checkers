@@ -14,7 +14,7 @@ namespace Checkers.ViewModel
             MLogic = new MenuLogic();
             MultipleJumps = MLogic.MultipleJumpsAllowed;
         }
-        public void ChangeMulipleJumps(bool multipleJumps)
+        public void ChangeMultipleJumps(bool multipleJumps)
         {
             MultipleJumps = multipleJumps;
             MLogic.ChangeMultipleJumps(multipleJumps);

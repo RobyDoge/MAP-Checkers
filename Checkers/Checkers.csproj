@@ -17,9 +17,13 @@
 
   <ItemGroup>
     <None Remove="Image\BlackSpace_BlackPiece.png" />
+    <None Remove="Image\BlackSpace_BlackPieceKing.png" />
+    <None Remove="Image\BlackSpace_BlackPieceKing_Selected.png" />
     <None Remove="Image\BlackSpace_BlackPiece_Selected.png" />
     <None Remove="Image\BlackSpace_Empty.png" />
     <None Remove="Image\BlackSpace_WhitePiece.png" />
+    <None Remove="Image\BlackSpace_WhitePieceKing.png" />
+    <None Remove="Image\BlackSpace_WhitePieceKing_Selected.png" />
     <None Remove="Image\BlackSpace_WhitePiece_Selected.png" />
     <None Remove="Image\WhiteSpace_Empty.png" />
   </ItemGroup>
@@ -32,6 +36,12 @@
     <Content Include="Image\BlackSpace_BlackPiece.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Image\BlackSpace_BlackPieceKing.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Image\BlackSpace_BlackPieceKing_Selected.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Image\BlackSpace_BlackPiece_Selected.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -39,6 +49,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Image\BlackSpace_WhitePiece.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Image\BlackSpace_WhitePieceKing.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Image\BlackSpace_WhitePieceKing_Selected.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Image\BlackSpace_WhitePiece_Selected.png">

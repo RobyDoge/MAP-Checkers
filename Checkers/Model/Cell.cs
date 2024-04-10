@@ -14,6 +14,10 @@ namespace Checkers.Model
             BlackPiece = backgroundPiecePath[1];
             WhitePieceSelected = backgroundPiecePath[0].Replace("WhitePiece", "WhitePiece_Selected");
             BlackPieceSelected = backgroundPiecePath[1].Replace("BlackPiece", "BlackPiece_Selected");
+            WhitePieceKing = backgroundPiecePath[0].Replace("WhitePiece", "WhitePieceKing");
+            BlackPieceKing = backgroundPiecePath[1].Replace("BlackPiece", "BlackPieceKing");
+            WhitePieceKingSelected = backgroundPiecePath[0].Replace("WhitePiece", "WhitePieceKing_Selected");
+            BlackPieceKingSelected = backgroundPiecePath[1].Replace("BlackPiece", "BlackPieceKing_Selected");
         }
 
         
@@ -63,6 +67,42 @@ namespace Checkers.Model
                 NotifyPropertyChanged("BlackPieceSelected");
             }
         }
+        public string WhitePieceKing
+        {
+            get => _whitePieceKing;
+            set
+            {
+                _whitePieceKing = value;
+                NotifyPropertyChanged("WhitePieceKing");
+            }
+        }
+        public string BlackPieceKing
+        {
+            get => _blackPieceKing;
+            set
+            {
+                _blackPieceKing = value;
+                NotifyPropertyChanged("BlackPieceKing");
+            }
+        }
+        public string WhitePieceKingSelected
+        {
+            get => _whitePieceKingSelected;
+            set
+            {
+                _whitePieceKingSelected = value;
+                NotifyPropertyChanged("WhitePieceKingSelected");
+            }
+        }
+        public string BlackPieceKingSelected
+        {
+            get => _blackPieceKingSelected;
+            set
+            {
+                _blackPieceKingSelected = value;
+                NotifyPropertyChanged("BlackPieceKingSelected");
+            }
+        }
         public string CurrentImage
         {
             get => _currentImage;
@@ -84,6 +124,7 @@ namespace Checkers.Model
         public int X { get; set; }
         public int Y { get; set; }
         
+
         private State _currentState;
         private string _currentImage;
         private string _backgroundEmptyPath;
@@ -91,12 +132,18 @@ namespace Checkers.Model
         private string _blackPiece;
         private string _whitePieceSelected;
         private string _blackPieceSelected;
+        private string _whitePieceKing;
+        private string _blackPieceKing;
+        private string _whitePieceKingSelected;
+        private string _blackPieceKingSelected;
     }
 
     public enum State
     {
         Empty,
         WhitePiece,
-        BlackPiece
+        BlackPiece,
+        WhitePieceKing,
+        BlackPieceKing
     }
 }

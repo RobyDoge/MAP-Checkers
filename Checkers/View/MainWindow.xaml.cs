@@ -25,7 +25,7 @@ namespace Checkers.View
 
         private void chbMultipleJump_Checked(object sender, RoutedEventArgs e)
         {
-            MMVM.ChangeMulipleJumps(chbMultipleJump.IsChecked.Value);
+            MMVM.ChangeMultipleJumps(chbMultipleJump.IsChecked.Value);
         }
     }
 }
