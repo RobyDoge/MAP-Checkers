@@ -15,7 +15,7 @@ namespace Checkers.Services
         public void ChangeMultipleJumps(bool multipleJumpsAllowed)
         {
             MultipleJumpsAllowed = multipleJumpsAllowed;
-            //MultipleJumpsHandler.ChangeMultipleJumps(multipleJumpsAllowed);
+            MultipleJumpsHandler.ChangeMultipleJumps(multipleJumpsAllowed);
         }
     }
 }

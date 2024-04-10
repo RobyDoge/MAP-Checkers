@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Checkers.ViewModel;
+using System.Windows;
 
 namespace Checkers.View
 {
@@ -7,9 +8,12 @@ namespace Checkers.View
     /// </summary>
     public partial class MainWindow : Window
     {
+        private MainMenuVM MMVM { get; set; }
         public MainWindow()
         {
             InitializeComponent();
+            MMVM = new MainMenuVM();
+            chbMultipleJump.IsChecked = MMVM.MultipleJumps;
         }
 
         private void btNewGame_Click(object sender, RoutedEventArgs e)
@@ -17,6 +21,11 @@ namespace Checkers.View
             var game = new GameWindow();
             game.Show();
             Close();
+        }
+
+        private void chbMultipleJump_Checked(object sender, RoutedEventArgs e)
+        {
+            MMVM.ChangeMulipleJumps(chbMultipleJump.IsChecked.Value);
         }
     }
 }

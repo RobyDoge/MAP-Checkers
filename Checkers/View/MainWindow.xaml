@@ -21,10 +21,9 @@
                 Height="27"
                 Click="btNewGame_Click" />
         <CheckBox Content="Allow Multiple Jump"
-                  Command="{Binding ChangeMultipleJumps}"
-                  CommandParameter="{Binding IsChecked, ElementName=chbMultipleJump}"
                   Name="chbMultipleJump"
                   HorizontalAlignment="Center"
+                  Click="chbMultipleJump_Checked"
                   Margin="0,98,0,0"
                   VerticalAlignment="Top"
                   Height="21"

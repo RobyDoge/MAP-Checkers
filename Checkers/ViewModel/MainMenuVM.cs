@@ -14,17 +14,10 @@ namespace Checkers.ViewModel
             MLogic = new MenuLogic();
             MultipleJumps = MLogic.MultipleJumpsAllowed;
         }
-
-        public ICommand ChangeMultipleJumps
+        public void ChangeMulipleJumps(bool multipleJumps)
         {
-            get
-            {
-                if(_changeMultipleJumps == null)
-                    _changeMultipleJumps = new RelayCommand<bool>(MLogic.ChangeMultipleJumps);
-                return _changeMultipleJumps;
-            }
+            MultipleJumps = multipleJumps;
+            MLogic.ChangeMultipleJumps(multipleJumps);
         }
-        
-        private ICommand _changeMultipleJumps;
     }
 }
