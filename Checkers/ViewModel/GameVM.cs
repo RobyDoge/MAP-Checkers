@@ -9,8 +9,10 @@ namespace Checkers.ViewModel
     public class GameVM
     {
         public ObservableCollection<ObservableCollection<CellVM>> GameBoard { get; set; }
-
         private GameLogic GLogic { get; set; }
+        public ObservableCollection<GameLogic.Player> CurrentPlayer => GLogic.CurrentPlayer;
+        public ObservableCollection<int> WhitePiecesNumber => GLogic.WhitePiecesNumber;
+        public ObservableCollection<int> BlackPiecesNumber => GLogic.BlackPiecesNumber;
 
         public GameVM()
         {
@@ -35,8 +37,6 @@ namespace Checkers.ViewModel
             return boardVM;
         }
 
-        private ICommand _saveGame;
-
         public ICommand SaveGame
         {
             get
@@ -49,6 +49,9 @@ namespace Checkers.ViewModel
             }
         }
 
+
+
+        private ICommand _saveGame;
     }
 
 }

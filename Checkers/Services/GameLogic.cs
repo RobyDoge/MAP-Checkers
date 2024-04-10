@@ -1,11 +1,12 @@
 ﻿using Checkers.Model;
 using System.Collections.ObjectModel;
+using System.Diagnostics.Metrics;
 using Checkers.XMLHandlers;
 using Checkers.View;
 
 namespace Checkers.Services
 {
-    public class GameLogic
+    public class GameLogic : BaseNotification
     {
         public enum Player
         {
@@ -13,29 +14,31 @@ namespace Checkers.Services
             Black
         }
 
-        private Player CurrentPlayer { get; set; }
+        public ObservableCollection<Player> CurrentPlayer { get; set; }
+
         private bool MultipleJumps { get; set; }
         private bool TookAPiece { get; set; }
 
-        private int WhitePiecesNumber { get; set; }
-        private int BlackPiecesNumber { get; set; }
+        public ObservableCollection<int> WhitePiecesNumber {get; set; }
+
+        public ObservableCollection<int> BlackPiecesNumber { get; set; }
 
         private ObservableCollection<ObservableCollection<Cell>> Cells { get; set; }
 
         public GameLogic(ObservableCollection<ObservableCollection<Cell>> cells, bool multipleJumps)
         {
             Cells = cells;
-            CurrentPlayer = Player.White;
+            CurrentPlayer = [Player.White];
             MultipleJumps = multipleJumps;
             TookAPiece = false;
-            WhitePiecesNumber = 12;
-            BlackPiecesNumber = 12;
+            WhitePiecesNumber = [12];
+            BlackPiecesNumber = [12];
 
         }
 
         public void ClickAction(Cell cell)
         {
-            if (cell.CurrentState == State.WhitePiece && CurrentPlayer == Player.White)
+            if (cell.CurrentState == State.WhitePiece && CurrentPlayer[0] == Player.White)
             {
                 if (Helper.PreviousCell != null)
                 {
@@ -45,7 +48,7 @@ namespace Checkers.Services
                 Helper.PreviousCell = cell;
                 Helper.PreviousCell.CurrentImage = cell.WhitePieceSelected;
             }
-            else if (cell.CurrentState == State.BlackPiece && CurrentPlayer == Player.Black)
+            else if (cell.CurrentState == State.BlackPiece && CurrentPlayer[0] == Player.Black)
             {
                 if (Helper.PreviousCell != null)
                 {
@@ -67,20 +70,20 @@ namespace Checkers.Services
                     switch (Helper.PreviousCell.CurrentState)
                     {
                         case State.BlackPiece:
-                            WhitePiecesNumber--;
+                            WhitePiecesNumber[0]--;
                             break;
                         case State.WhitePiece:
-                            BlackPiecesNumber--;
+                            BlackPiecesNumber[0]--;
                             break;
                     }
 
-                    if (WhitePiecesNumber == 0)
+                    if (WhitePiecesNumber[0] == 0)
                     {
                         throw new Exception("Black Won");
 
                     }
 
-                    if (BlackPiecesNumber == 0)
+                    if (BlackPiecesNumber[0] == 0)
                     {
                         throw new Exception("White Won");
                     }
@@ -145,7 +148,7 @@ namespace Checkers.Services
                 return;
             }
 
-            CurrentPlayer = CurrentPlayer == Player.White ? Player.Black : Player.White;
+            CurrentPlayer[0] = CurrentPlayer[0] == Player.White ? Player.Black : Player.White;
 
             //TODO: check if there are any jumps left
             //if (TookAPiece)
@@ -189,8 +192,10 @@ namespace Checkers.Services
             dialog.ShowDialog();
             var gameName = dialog.GameName;
             if(gameName == null) return;
-            SavedGamesHandler.SaveCurrentGame(Cells, CurrentPlayer, MultipleJumps,gameName);
+            SavedGamesHandler.SaveCurrentGame(Cells, CurrentPlayer[0], MultipleJumps,gameName);
         }
+
+        
     }
 
 

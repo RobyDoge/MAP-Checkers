@@ -5,33 +5,88 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Checkers.ViewModel"
         mc:Ignorable="d"
-        Title="Checkers" Height="786" Width="1366"
+        Title="Checkers"
+        Height="786"
+        Width="1366"
         ResizeMode="NoResize">
+    <Window.Resources>
+        <Style TargetType="{x:Type Grid}">
+            <Setter Property="Background"
+                    Value="#687897" />
+        </Style>
+
+    </Window.Resources>
     <Window.DataContext>
         <local:GameVM />
     </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="400"></ColumnDefinition>
+            <ColumnDefinition Width="500"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
         <Grid>
             <Button Content="Save Game"
-                    Name ="btnSaveGame"
+                    Name="btnSaveGame"
                     Command="{Binding SaveGame}"
                     HorizontalAlignment="Left"
-                    Margin="162,210,0,0"
-                    VerticalAlignment="Top" />
+                    Margin="400,0,0,0"
+                    VerticalAlignment="Top"
+                    Height="40"
+                    Width="100" />
             <Button Content="Back To Main Menu"
                     Name="btnBackToMainMenu"
                     HorizontalAlignment="Left"
-                    Margin="119,114,0,0"
                     VerticalAlignment="Top"
-                    Click="btnBackToMainMenu_Click" />
-
+                    Click="btnBackToMainMenu_Click"
+                    Height="40"
+                    Width="150" />
+            <Label Content="{Binding BlackPiecesNumber[0]}"
+                   Name="lblBlackPieces"
+                   HorizontalAlignment="Center"
+                   HorizontalContentAlignment="Center"
+                   VerticalContentAlignment="Center"
+                   Margin="0,100,0,0"
+                   VerticalAlignment="Top"
+                   Height="100"
+                   Width="200"
+                   FontSize="40"
+                   FontWeight="Bold" />
+            <Label Content="{Binding WhitePiecesNumber[0]}"
+                   Name="lblWhitePieces"
+                   HorizontalAlignment="Center"
+                   HorizontalContentAlignment="Center"
+                   VerticalContentAlignment="Center"
+                   Margin="0,586,0,0"
+                   VerticalAlignment="Top"
+                   Height="100"
+                   Width="200"
+                   FontSize="40"
+                   FontWeight="Bold" />
+            <Label Content="{Binding CurrentPlayer[0]}"
+                   Name="lblCurrentPlayer"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   HorizontalContentAlignment="Center"
+                   VerticalContentAlignment="Center"
+                   Height="200"
+                   Width="350"
+                   FontSize="50"
+                   FontWeight="Bold" >
+                <Label.Style>
+                    <Style TargetType="Label">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding CurrentPlayer[0]}"
+                                         Value="White">
+                                <Setter Property="Foreground"
+                                        Value="White" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Label.Style>
+            </Label>
         </Grid>
-        
+
         <ItemsControl Name="Board"
                       ItemsSource="{Binding GameBoard}"
                       VerticalAlignment="Center"
@@ -67,5 +122,6 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
+
     </Grid>
 </Window>
