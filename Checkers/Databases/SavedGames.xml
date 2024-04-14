@@ -23,5 +23,16 @@
     <Cell y="7" x="5" currentState="WhitePiece" />
     <Cell y="7" x="7" currentState="WhitePiece" />
   </Game>
-  
+  <Game name="One Turn From White Win" whitePieceNumber="9" blackPieceNumber="1" playerTurn="White" multipleJumpsAllowed="True">
+    <Cell y="0" x="6" currentState="WhitePieceKing" />
+    <Cell y="3" x="1" currentState="WhitePiece" />
+    <Cell y="4" x="4" currentState="BlackPiece" />
+    <Cell y="4" x="6" currentState="WhitePieceKing" />
+    <Cell y="5" x="5" currentState="WhitePiece" />
+    <Cell y="6" x="0" currentState="WhitePiece" />
+    <Cell y="6" x="6" currentState="WhitePiece" />
+    <Cell y="7" x="1" currentState="WhitePiece" />
+    <Cell y="7" x="5" currentState="WhitePiece" />
+    <Cell y="7" x="7" currentState="WhitePiece" />
+  </Game>
 </SavedGames>

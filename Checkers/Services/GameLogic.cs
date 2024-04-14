@@ -35,7 +35,6 @@ public class GameLogic : BaseNotification
         MultipleJumps = multipleJumps;
         WhitePiecesNumber = [12];
         BlackPiecesNumber = [12];
-          
     }
 
     public GameLogic(ObservableCollection<ObservableCollection<Cell>> cells, bool multipleJumps, string currentPlayer,
@@ -53,53 +52,63 @@ public class GameLogic : BaseNotification
 
     public void ClickAction(Cell cell)
     {
+        if (IsGameOver) return;
+
         if (cell.CurrentState == State.WhitePiece && CurrentPlayer[0] == Player.White)
         {
-            if (Helper.PreviousCell != null) 
-                Helper.PreviousCell.CurrentImage = Helper.PreviousCell.CurrentState == State.WhitePiece?
-                    Helper.PreviousCell.WhitePiece : Helper.PreviousCell.WhitePieceKing;
+            if (Helper.PreviousCell != null)
+                Helper.PreviousCell.CurrentImage = Helper.PreviousCell.CurrentState == State.WhitePiece
+                    ? Helper.PreviousCell.WhitePiece
+                    : Helper.PreviousCell.WhitePieceKing;
 
             Helper.PreviousCell = cell;
             Helper.PreviousCell.CurrentImage = cell.WhitePieceSelected;
             return;
         }
+
         if (cell.CurrentState == State.BlackPiece && CurrentPlayer[0] == Player.Black)
         {
             if (Helper.PreviousCell != null)
-                Helper.PreviousCell.CurrentImage = Helper.PreviousCell.CurrentState == State.BlackPiece ?
-                    Helper.PreviousCell.BlackPiece : Helper.PreviousCell.BlackPieceKing;
+                Helper.PreviousCell.CurrentImage = Helper.PreviousCell.CurrentState == State.BlackPiece
+                    ? Helper.PreviousCell.BlackPiece
+                    : Helper.PreviousCell.BlackPieceKing;
 
             Helper.PreviousCell = cell;
             Helper.PreviousCell.CurrentImage = cell.BlackPieceSelected;
             return;
         }
+
         if (cell.CurrentState == State.WhitePieceKing && CurrentPlayer[0] == Player.White)
         {
             if (Helper.PreviousCell != null)
-                Helper.PreviousCell.CurrentImage = Helper.PreviousCell.CurrentState == State.WhitePiece ?
-                    Helper.PreviousCell.WhitePiece : Helper.PreviousCell.WhitePieceKing;
+                Helper.PreviousCell.CurrentImage = Helper.PreviousCell.CurrentState == State.WhitePiece
+                    ? Helper.PreviousCell.WhitePiece
+                    : Helper.PreviousCell.WhitePieceKing;
 
             Helper.PreviousCell = cell;
             Helper.PreviousCell.CurrentImage = cell.WhitePieceKingSelected;
             return;
         }
+
         if (cell.CurrentState == State.BlackPieceKing && CurrentPlayer[0] == Player.Black)
         {
             if (Helper.PreviousCell != null)
-                Helper.PreviousCell.CurrentImage = Helper.PreviousCell.CurrentState == State.BlackPiece ?
-                    Helper.PreviousCell.BlackPiece : Helper.PreviousCell.BlackPieceKing;
+                Helper.PreviousCell.CurrentImage = Helper.PreviousCell.CurrentState == State.BlackPiece
+                    ? Helper.PreviousCell.BlackPiece
+                    : Helper.PreviousCell.BlackPieceKing;
 
             Helper.PreviousCell = cell;
             Helper.PreviousCell.CurrentImage = cell.BlackPieceKingSelected;
             return;
         }
+
         if (Helper.PreviousCell != null)
         {
             if (cell.CurrentState != State.Empty) return;
             if (Helper.PreviousCell.CurrentState is not (State.WhitePieceKing or State.BlackPieceKing))
                 if (!IsMovingForward(cell))
                     return;
-            if (PieceTakingAvailable(Helper.PreviousCell,cell))
+            if (PieceTakingAvailable(Helper.PreviousCell, cell))
             {
                 TookAPiece = true;
                 switch (Helper.PreviousCell.CurrentState)
@@ -117,10 +126,24 @@ public class GameLogic : BaseNotification
                         BlackPiecesNumber[0]--;
                         break;
                 }
-                if (WhitePiecesNumber[0] == 0) throw new Exception("Black Won");
 
-                if (BlackPiecesNumber[0] == 0) throw new Exception("White Won");
+                if (WhitePiecesNumber[0] == 0)
+                {
+                    StatisticsHandler.UpdateStatisticsBlack(BlackPiecesNumber[0]);
+                    IsGameOver = true;
+                    var endGame = new EndGame("Black");
+                    endGame.ShowDialog();
+                    //create win game window
+                }
 
+                if (BlackPiecesNumber[0] == 0)
+                {
+                    StatisticsHandler.UpdateStatisticsWhite(WhitePiecesNumber[0]);
+                    IsGameOver = true;
+                    var endGame = new EndGame("White");
+                    endGame.ShowDialog();
+                    //create win game window
+                }
             }
             else if (!AreNeighbours(cell))
             {
@@ -142,6 +165,7 @@ public class GameLogic : BaseNotification
             if (PieceTakingAvailable(fromCell, toCell))
                 return true;
         }
+
         return false;
     }
 
@@ -153,46 +177,33 @@ public class GameLogic : BaseNotification
         {
             var xIndex = (neighbour.X - cell.X) * 2;
             var yIndex = (neighbour.Y - cell.Y) * 2;
-            updatedNeighbours.Add(Cells[cell.Y+yIndex][cell.X + xIndex]);
+            updatedNeighbours.Add(Cells[cell.Y + yIndex][cell.X + xIndex]);
         }
+
         return updatedNeighbours;
     }
 
     private static IEnumerable<Cell> CorrectNeighbors(IEnumerable<Cell> allNeighbors, Cell cell)
     {
-        
         List<Cell> neighbours = [];
         foreach (var neighbour in allNeighbors)
-        {
             if (cell.CurrentState == State.WhitePiece)
             {
-                if (neighbour.X < cell.X && neighbour.Y < cell.Y)
-                {
-                    neighbours.Add(neighbour);
-                }
+                if (neighbour.X < cell.X && neighbour.Y < cell.Y) neighbours.Add(neighbour);
 
-                if (neighbour.X > cell.X && neighbour.Y < cell.Y)
-                {
-                    neighbours.Add(neighbour);
-                }
-            } 
+                if (neighbour.X > cell.X && neighbour.Y < cell.Y) neighbours.Add(neighbour);
+            }
             else if (cell.CurrentState == State.BlackPiece)
             {
-                if (neighbour.X < cell.X && neighbour.Y > cell.Y)
-                {
-                    neighbours.Add(neighbour);
-                }
+                if (neighbour.X < cell.X && neighbour.Y > cell.Y) neighbours.Add(neighbour);
 
-                if (neighbour.X > cell.X && neighbour.Y > cell.Y)
-                {
-                    neighbours.Add(neighbour);
-                }
+                if (neighbour.X > cell.X && neighbour.Y > cell.Y) neighbours.Add(neighbour);
             }
             else
             {
                 neighbours.Add(neighbour);
             }
-        }
+
         return neighbours;
     }
 
@@ -203,23 +214,23 @@ public class GameLogic : BaseNotification
         var x = cell.Y;
         switch (x)
         {
-            case <2 when y <2:
+            case < 2 when y < 2:
                 neighbours.Add(Cells[x + 1][y + 1]);
                 break;
-            case <2 when y >5:
+            case < 2 when y > 5:
                 neighbours.Add(Cells[x + 1][y - 1]);
                 break;
-            case >5 when y <2:
+            case > 5 when y < 2:
                 neighbours.Add(Cells[x - 1][y + 1]);
                 break;
-            case >5 when y >5:
+            case > 5 when y > 5:
                 neighbours.Add(Cells[x - 1][y - 1]);
                 break;
-            case <2:
+            case < 2:
                 neighbours.Add(Cells[x + 1][y + 1]);
                 neighbours.Add(Cells[x + 1][y - 1]);
                 break;
-            case >5:
+            case > 5:
                 neighbours.Add(Cells[x - 1][y + 1]);
                 neighbours.Add(Cells[x - 1][y - 1]);
                 break;
@@ -227,11 +238,11 @@ public class GameLogic : BaseNotification
             {
                 switch (y)
                 {
-                    case <2:
+                    case < 2:
                         neighbours.Add(Cells[x + 1][y + 1]);
                         neighbours.Add(Cells[x - 1][y + 1]);
                         break;
-                    case >5:
+                    case > 5:
                         neighbours.Add(Cells[x + 1][y - 1]);
                         neighbours.Add(Cells[x - 1][y - 1]);
                         break;
@@ -242,17 +253,19 @@ public class GameLogic : BaseNotification
                         neighbours.Add(Cells[x - 1][y - 1]);
                         break;
                 }
+
                 break;
             }
         }
+
         return neighbours;
     }
 
-    private bool PieceTakingAvailable(Cell fromCell,Cell toCell)
+    private bool PieceTakingAvailable(Cell fromCell, Cell toCell)
     {
         if (fromCell.CurrentState == State.WhitePiece)
         {
-            if (JumpAvailable(fromCell,toCell, -2, -2))
+            if (JumpAvailable(fromCell, toCell, -2, -2))
                 return IsJumpedPieceCorrect(fromCell.X - 1, fromCell.Y - 1, State.BlackPiece,
                     State.BlackPieceKing);
             if (JumpAvailable(fromCell, toCell, +2, -2))
@@ -306,7 +319,7 @@ public class GameLogic : BaseNotification
         return false;
     }
 
-    private static bool JumpAvailable(Cell fromCell,Cell toCell, int xOffSet, int yOffSet)
+    private static bool JumpAvailable(Cell fromCell, Cell toCell, int xOffSet, int yOffSet)
     {
         return toCell.X == fromCell.X + xOffSet && toCell.Y == fromCell?.Y + yOffSet;
     }
@@ -319,7 +332,10 @@ public class GameLogic : BaseNotification
                 Cells[xIndex][yIndex].CurrentState != neededState[1])
                 return false;
         }
-        else if (Cells[xIndex][yIndex].CurrentState != neededState[0]) return false;
+        else if (Cells[xIndex][yIndex].CurrentState != neededState[0])
+        {
+            return false;
+        }
 
         if (TookAPiece) return true;
         Cells[xIndex][yIndex].CurrentImage = Cells[xIndex][yIndex].BackgroundEmptyPath;
@@ -405,6 +421,7 @@ public class GameLogic : BaseNotification
         dialog.ShowDialog();
         var gameName = dialog.GameName;
         if (gameName == "") return;
-        SavedGamesHandler.SaveCurrentGame(Cells, CurrentPlayer[0], MultipleJumps, gameName, WhitePiecesNumber[0], BlackPiecesNumber[0]);
+        SavedGamesHandler.SaveCurrentGame(Cells, CurrentPlayer[0], MultipleJumps, gameName, WhitePiecesNumber[0],
+            BlackPiecesNumber[0]);
     }
 }

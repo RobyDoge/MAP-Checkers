@@ -1,5 +1,4 @@
-﻿<Statistics>
-  <Black winsNumber="0" maxPieceWin="0"/>
-  <White winsNumber="0" maxPieceWin="0"/>
+<Statistics>
+  <Black winsNumber="0" maxPieceWin="0" />
+  <White winsNumber="4" maxPieceWin="9" />
 </Statistics>
-
