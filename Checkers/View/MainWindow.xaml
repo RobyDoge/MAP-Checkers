@@ -28,15 +28,16 @@
                   VerticalAlignment="Top"
                   Height="21"
                   Width="132" />
-        <Button Content="Open A Saved Game"
-                Name="btOpenGame"
-                HorizontalAlignment="Center"
-                Margin="0,140,0,0"
-                VerticalAlignment="Top"
-                Width="179"
-                Height="28"/>
+        <ComboBox ItemsSource="{Binding SavedGamesName}"
+                  SelectionChanged="CmbOpenGame_OnSelectionChanged"
+                  Name="cmbOpenGame"
+                  HorizontalAlignment="Center"
+                  Margin="0,140,0,0"
+                  VerticalAlignment="Top"
+                  Width="179"
+                  Height="28"/>
 
-        <Button Content="Statistics"
+            <Button Content="Statistics"
                 Name="btStatistics"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Top"

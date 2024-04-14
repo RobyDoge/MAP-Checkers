@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using Checkers.ViewModel;
 
 namespace Checkers.View
 {
@@ -10,6 +11,12 @@ namespace Checkers.View
         public GameWindow()
         {
             InitializeComponent();
+            this.DataContext = new GameVM();
+        }
+        public GameWindow(string gameName)
+        {
+            InitializeComponent();
+            this.DataContext = new GameVM(gameName);
         }
 
         private void btnBackToMainMenu_Click(object sender, RoutedEventArgs e)

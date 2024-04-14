@@ -1,5 +1,5 @@
 <SavedGames>
-  <Game name="One Move Before White King" playerTurn="White" multipleJumpsAllowed="True">
+  <Game name="One Move Before White King" playerTurn="White" multipleJumpsAllowed="True" whitePieceNumber="11" blackPieceNumber="11">
     <Cell y="0" x="0" currentState="BlackPiece" />
     <Cell y="0" x="6" currentState="BlackPiece" />
     <Cell y="1" x="1" currentState="BlackPiece" />

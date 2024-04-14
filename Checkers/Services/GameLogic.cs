@@ -27,13 +27,28 @@ public class GameLogic : BaseNotification
 
     public GameLogic(ObservableCollection<ObservableCollection<Cell>> cells, bool multipleJumps)
     {
+        TookAPiece = false;
+        AnotherTakeIsAvailable = false;
+
         Cells = cells;
         CurrentPlayer = [Player.White];
         MultipleJumps = multipleJumps;
-        TookAPiece = false;
         WhitePiecesNumber = [12];
         BlackPiecesNumber = [12];
+          
+    }
+
+    public GameLogic(ObservableCollection<ObservableCollection<Cell>> cells, bool multipleJumps, string currentPlayer,
+        int whitePiecesNumber, int blackPiecesNumber)
+    {
+        TookAPiece = false;
         AnotherTakeIsAvailable = false;
+
+        Cells = cells;
+        CurrentPlayer = [currentPlayer == "White" ? Player.White : Player.Black];
+        MultipleJumps = multipleJumps;
+        WhitePiecesNumber = [whitePiecesNumber];
+        BlackPiecesNumber = [blackPiecesNumber];
     }
 
     public void ClickAction(Cell cell)
@@ -390,6 +405,6 @@ public class GameLogic : BaseNotification
         dialog.ShowDialog();
         var gameName = dialog.GameName;
         if (gameName == "") return;
-        SavedGamesHandler.SaveCurrentGame(Cells, CurrentPlayer[0], MultipleJumps, gameName);
+        SavedGamesHandler.SaveCurrentGame(Cells, CurrentPlayer[0], MultipleJumps, gameName, WhitePiecesNumber[0], BlackPiecesNumber[0]);
     }
 }

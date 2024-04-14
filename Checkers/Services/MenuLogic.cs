@@ -1,4 +1,5 @@
 ﻿
+using System.Collections.ObjectModel;
 using Checkers.XMLHandlers;
 
 namespace Checkers.Services
@@ -16,6 +17,11 @@ namespace Checkers.Services
         {
             MultipleJumpsAllowed = multipleJumpsAllowed;
             MultipleJumpsHandler.ChangeMultipleJumps(multipleJumpsAllowed);
+        }
+
+        public ObservableCollection<string>? GetSavedGamesName()
+        {
+            return SavedGamesHandler.GetSavedGamesName();
         }
     }
 }

@@ -17,9 +17,15 @@ namespace Checkers.ViewModel
         public GameVM()
         {
             var board = Helper.InitGameBoard();
-
             GLogic = new GameLogic(board, MultipleJumpsHandler.GetMultipleJumps());
             GameBoard = CellBoardToCellVMBoard(board);
+        }
+
+        public GameVM(string gameName)
+        {
+            var gameInfo = SavedGamesHandler.LoadGame(gameName);
+            GLogic = new GameLogic(gameInfo.Board,gameInfo.MultipleJumps,gameInfo.PlayerTurn,gameInfo.WhitePiecesNumber,gameInfo.BlackPiecesNumber);
+            GameBoard = CellBoardToCellVMBoard(gameInfo.Board);
         }
 
         private ObservableCollection<ObservableCollection<CellVM>> CellBoardToCellVMBoard(ObservableCollection<ObservableCollection<Cell>> board)

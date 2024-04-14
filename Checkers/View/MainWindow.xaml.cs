@@ -1,5 +1,6 @@
 ﻿using Checkers.ViewModel;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace Checkers.View
 {
@@ -26,6 +27,17 @@ namespace Checkers.View
         private void chbMultipleJump_Checked(object sender, RoutedEventArgs e)
         {
             MMVM.ChangeMultipleJumps(chbMultipleJump.IsChecked.Value);
+        }
+
+        private void CmbOpenGame_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var gameName = (string)cmbOpenGame.SelectedItem;
+            if (gameName != null)
+            {
+                var game = new GameWindow(gameName);
+                game.Show();
+                Close();
+            }
         }
     }
 }

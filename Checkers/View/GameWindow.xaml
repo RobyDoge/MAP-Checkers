@@ -16,9 +16,9 @@
         </Style>
 
     </Window.Resources>
-    <Window.DataContext>
+    <!--<Window.DataContext>
         <local:GameVM />
-    </Window.DataContext>
+    </Window.DataContext>-->
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="500"></ColumnDefinition>
