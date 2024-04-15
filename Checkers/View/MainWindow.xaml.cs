@@ -46,5 +46,12 @@ namespace Checkers.View
             statisticsWindow.Show();
             Close();
         }
+
+        private void btHelp_Click(object sender, RoutedEventArgs e)
+        {
+            var helpWindow = new Help();
+            helpWindow.Show();
+            Close();
+        }
     }
 }

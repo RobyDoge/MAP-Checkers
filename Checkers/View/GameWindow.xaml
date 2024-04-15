@@ -43,26 +43,26 @@
                     Width="150" />
             <Label Content="{Binding BlackPiecesNumber[0]}"
                    Name="lblBlackPieces"
-                   HorizontalAlignment="Center"
+                   HorizontalAlignment="Left"
                    HorizontalContentAlignment="Center"
                    VerticalContentAlignment="Center"
-                   Margin="0,100,0,0"
+                   Margin="111,100,0,0"
                    VerticalAlignment="Top"
                    Height="100"
-                   Width="200"
+                   Width="80"
                    FontSize="40"
                    FontWeight="Bold" />
             <Label Content="{Binding WhitePiecesNumber[0]}"
                    Name="lblWhitePieces"
-                   HorizontalAlignment="Center"
+                   HorizontalAlignment="Left"
                    HorizontalContentAlignment="Center"
                    VerticalContentAlignment="Center"
-                   Margin="0,586,0,0"
+                   Margin="111,596,0,0"
                    VerticalAlignment="Top"
                    Height="100"
-                   Width="200"
+                   Width="80"
                    FontSize="40"
-                   FontWeight="Bold" />
+                   FontWeight="Bold"/>
             <Label Content="{Binding CurrentPlayer[0]}"
                    Name="lblCurrentPlayer"
                    HorizontalAlignment="Center"
@@ -72,7 +72,7 @@
                    Height="200"
                    Width="350"
                    FontSize="50"
-                   FontWeight="Bold" >
+                   FontWeight="Bold">
                 <Label.Style>
                     <Style TargetType="Label">
                         <Style.Triggers>
@@ -84,6 +84,17 @@
                         </Style.Triggers>
                     </Style>
                 </Label.Style>
+            </Label>
+            <Label Content="Pieces Left"
+                   HorizontalAlignment="Left"
+                   Margin="210,118,0,0"
+                   VerticalAlignment="Top"
+                   FontSize="40" />
+            <Label HorizontalAlignment="Left"
+                   Margin="210,614,0,0"
+                   VerticalAlignment="Top"
+                   FontSize="40">
+                <Label Content="Pieces Left" />
             </Label>
         </Grid>
 

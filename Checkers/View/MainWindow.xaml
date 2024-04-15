@@ -54,7 +54,8 @@
                 VerticalAlignment="Top"
                 RenderTransformOrigin="-0.276,-3.199"
                 Width="179"
-                Height="27" />
+                Height="27"
+                Click="btHelp_Click" />
 
     </Grid>
 </Window>
