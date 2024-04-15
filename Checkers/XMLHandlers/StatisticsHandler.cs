@@ -1,4 +1,5 @@
-﻿using System.Xml;
+﻿using System.Collections.ObjectModel;
+using System.Xml;
 
 namespace Checkers.XMLHandlers;
 
@@ -57,5 +58,41 @@ internal static class StatisticsHandler
 
         xmlDoc.Save("../../../Databases/Statistics.xml");
         return true;
+    }
+
+    internal static ObservableCollection<int> GetStatistics()
+    {
+        ObservableCollection<int> statistics = new();
+
+        XmlDocument xmlDoc = new();
+        xmlDoc.Load("../../../Databases/Statistics.xml");
+
+        var rootNode = xmlDoc.SelectSingleNode("Statistics");
+        if (rootNode == null) return statistics;
+
+        var whiteNode = rootNode.SelectSingleNode("White");
+        if (whiteNode == null) return statistics;
+
+        var winsNumberAttr = whiteNode.Attributes["winsNumber"];
+        if (winsNumberAttr == null) return statistics;
+        statistics.Add(int.Parse(winsNumberAttr.Value));
+
+        var maxPieceWinAttr = whiteNode.Attributes["maxPieceWin"];
+        if (maxPieceWinAttr == null) return statistics;
+        statistics.Add(int.Parse(maxPieceWinAttr.Value));
+
+
+        var blackNode = rootNode.SelectSingleNode("Black");
+        if (blackNode == null) return statistics;
+
+        winsNumberAttr = blackNode.Attributes["winsNumber"];
+        if (winsNumberAttr == null) return statistics;
+        statistics.Add(int.Parse(winsNumberAttr.Value));
+
+        maxPieceWinAttr = blackNode.Attributes["maxPieceWin"];
+        if(maxPieceWinAttr == null) return statistics;
+        statistics.Add(int.Parse(maxPieceWinAttr.Value));
+
+        return statistics;
     }
 }

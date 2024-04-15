@@ -39,12 +39,14 @@
 
             <Button Content="Statistics"
                 Name="btStatistics"
+                    Command="{Binding UpdateStatistics}"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Top"
                 RenderTransformOrigin="-7.307,-0.976"
                 Width="179"
                 Height="26"
-                Margin="0,192,0,0" />
+                Margin="0,192,0,0"
+                Click="btStatistics_Click" />
         <Button Content="Help"
                 Name="btHelp"
                 HorizontalAlignment="Center"

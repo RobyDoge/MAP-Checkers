@@ -39,5 +39,12 @@ namespace Checkers.View
                 Close();
             }
         }
+
+        private void btStatistics_Click(object sender, RoutedEventArgs e)
+        {
+            var statisticsWindow = new Statistics();
+            statisticsWindow.Show();
+            Close();
+        }
     }
 }
